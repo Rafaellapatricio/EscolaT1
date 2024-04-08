@@ -17,17 +17,21 @@ public class ColaboradorService {
 	
 	public List<ColaboradorModel> encontrarTodosOsColaboradores() {
 		return repository.findAll();
-		// SELECT * FROM tb_colaboradores;
+
 	}
 	public String cadastrar(DadosColaborador dados) {
-		var colaboradorExistente = repository.findByCpf(dados.cpf());
-		
-		if (dados.cpf() == colaboradorExistente.get().getCpf()) {
-			return "Colaborador ja existente";
-		} else {
-			var colaborador = new ColaboradorModel(dados.nome(), dados.email(), dados.cpf(), dados.cargo());
-			repository.save(colaborador);
-			return "Cadastro Feito";
-		}
+		repository.save(new ColaboradorModel(dados.nome(), dados.email(), dados.cpf(), dados.cargo(),
+					dados.endereco()));
+		return "Ok";
+//		var colaboradorExistente = repository.findByCpf(dados.cpf());
+//		
+//		if (dados.cpf() == colaboradorExistente.get().getCpf()) {
+//			return "Colaborador ja existente";
+//		} else {
+//			var colaborador = new ColaboradorModel(dados.nome(), dados.email(), dados.cpf(), dados.cargo(),
+//					dados.endereco());
+//			repository.save(colaborador);
+//			return "Cadastro Feito";
+//		}
 	}
 }

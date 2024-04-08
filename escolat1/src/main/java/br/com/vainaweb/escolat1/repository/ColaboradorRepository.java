@@ -8,5 +8,6 @@ import br.com.vainaweb.escolat1.model.ColaboradorModel;
 
 @Repository
 public interface ColaboradorRepository extends JpaRepository<ColaboradorModel, Long> {
+	
 	Optional<ColaboradorModel> findByCpf(String cpf);
 }
